@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://2l2bpnkkkdwq"]
+
+[ext_resource type="Script" uid="uid://767w3uh1lg6o" path="res://Codes/game.gd" id="1_ebmjs"]
+[ext_resource type="Texture2D" uid="uid://ch0qbwcd22rtn" path="res://Assets/Goat Characters/red.png" id="2_qxrlw"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ebmjs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qxrlw")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 24)
+
+[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
+zoom = Vector2(5, 5)
