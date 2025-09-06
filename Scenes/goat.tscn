@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4w3kwwijjhwi"]
+[gd_scene load_steps=15 format=3 uid="uid://c4w3kwwijjhwi"]
 
 [ext_resource type="Script" uid="uid://bx3g6awh2m2vy" path="res://Codes/goat.gd" id="1_ickow"]
 [ext_resource type="Texture2D" uid="uid://bb6d7fdkmwf18" path="res://Assets/Goat Characters/brown.png" id="1_sfahy"]
+[ext_resource type="Shape2D" uid="uid://c0yji0om1grgb" path="res://Scenes/goatcol.tres" id="3_jsmmk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ickow"]
 atlas = ExtResource("1_sfahy")
@@ -18,6 +19,30 @@ region = Rect2(48, 0, 24, 24)
 [sub_resource type="AtlasTexture" id="AtlasTexture_icpbp"]
 atlas = ExtResource("1_sfahy")
 region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33es1"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ry7rs"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e7cv"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjgif"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ghs4"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(96, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f133"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(120, 24, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_33es1"]
 animations = [{
@@ -37,10 +62,30 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33es1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ry7rs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e7cv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjgif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ghs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5f133")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ry7rs"]
-size = Vector2(15, 19)
 
 [node name="Goat" type="CharacterBody2D"]
 script = ExtResource("1_ickow")
@@ -48,11 +93,11 @@ script = ExtResource("1_ickow")
 [node name="GoatSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_33es1")
-animation = &"idle"
+animation = &"walk"
 autoplay = "idle"
-frame_progress = 0.249296
+frame_progress = 0.195401
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="GoatCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
 scale = Vector2(3, 3)
-shape = SubResource("RectangleShape2D_ry7rs")
+shape = ExtResource("3_jsmmk")

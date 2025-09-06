@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://2l2bpnkkkdwq"]
+[gd_scene load_steps=5 format=3 uid="uid://2l2bpnkkkdwq"]
 
 [ext_resource type="Script" uid="uid://767w3uh1lg6o" path="res://Codes/game.gd" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://c4w3kwwijjhwi" path="res://Scenes/goat.tscn" id="2_qxrlw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
+size = Vector2(20, 1080)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebmjs"]
 size = Vector2(1920, 48)
@@ -14,6 +17,15 @@ script = ExtResource("1_ebmjs")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(0, 515)
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-970, -515)
+shape = SubResource("RectangleShape2D_qxrlw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(970, -515)
+shape = SubResource("RectangleShape2D_qxrlw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 1)
