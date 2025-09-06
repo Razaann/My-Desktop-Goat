@@ -1,15 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://2l2bpnkkkdwq"]
+[gd_scene load_steps=4 format=3 uid="uid://2l2bpnkkkdwq"]
 
 [ext_resource type="Script" uid="uid://767w3uh1lg6o" path="res://Codes/game.gd" id="1_ebmjs"]
-[ext_resource type="Texture2D" uid="uid://ch0qbwcd22rtn" path="res://Assets/Goat Characters/red.png" id="2_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://c4w3kwwijjhwi" path="res://Scenes/goat.tscn" id="2_qxrlw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebmjs"]
+size = Vector2(1920, 48)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ebmjs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_qxrlw")
-region_enabled = true
-region_rect = Rect2(0, 0, 24, 24)
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="Sprite2D"]
-zoom = Vector2(5, 5)
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 515)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ebmjs")
+
+[node name="Goat" parent="." instance=ExtResource("2_qxrlw")]

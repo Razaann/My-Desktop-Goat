@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4w3kwwijjhwi"]
+
+[ext_resource type="Script" uid="uid://bx3g6awh2m2vy" path="res://Codes/goat.gd" id="1_ickow"]
+[ext_resource type="Texture2D" uid="uid://bb6d7fdkmwf18" path="res://Assets/Goat Characters/brown.png" id="1_sfahy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ickow"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsmmk"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umr8r"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icpbp"]
+atlas = ExtResource("1_sfahy")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_33es1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ickow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsmmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umr8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icpbp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ry7rs"]
+size = Vector2(15, 19)
+
+[node name="Goat" type="CharacterBody2D"]
+script = ExtResource("1_ickow")
+
+[node name="GoatSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_33es1")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.249296
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_ry7rs")
