@@ -1,61 +1,45 @@
 extends CharacterBody2D
 
+const SPEED = 75.0
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-var start_position: Vector2
-@export var patrol_distance = 200.0 # Try to randomize it
-var left_limit: float
-var right_limit: float
+var move_direction: int = 0 # -1 = left, 0 = idle, 1 = right
 
 func _ready():
-	start_position = global_position
-	left_limit = start_position.x - patrol_distance / 2
-	right_limit = start_position.x + patrol_distance / 2	
+	randomize()
+	choose_random_direction()
 
 func _physics_process(delta):
-	# Add the gravity.
+	# Apply gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	
+	movement()
+	
+	# Move and check collisions
+	var prev_velocity_x = velocity.x
+	move_and_slide()
+	
+	# If we were moving but x-velocity becomes 0 -> we hit a wall
+	if move_direction != 0 and is_on_wall():
+		move_direction = 0
+		await get_tree().create_timer(0.5).timeout
+		move_direction *= -1  # turn around
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
+func movement():
+	if move_direction == -1:
 		$GoatSprite.play("walk")
-		if direction < 0:
-			$GoatSprite.flip_h = true
-			velocity.x = direction * SPEED
-		elif direction > 0:
-			$GoatSprite.flip_h = false
-			velocity.x = direction * SPEED
+		$GoatSprite.flip_h = true
+		velocity.x = -SPEED
+	elif move_direction == 1:
+		$GoatSprite.play("walk")
+		$GoatSprite.flip_h = false
+		velocity.x = SPEED
 	else:
 		$GoatSprite.play("idle")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	move_and_slide()
-
-#func patrol_movement():
-	## Move in patrol direction
-	#velocity.x = patrol_direction * patrol_speed
-#
-	## Turn around if we reach the patrol boundaries
-	#if patrol_direction < 0 and global_position.x <= left_limit:
-		#patrol_direction = 0
-		#await get_tree().create_timer(1.0).timeout
-		#patrol_direction = 1
-	#elif patrol_direction > 0 and global_position.x >= right_limit:
-		#patrol_direction = 0
-		#await get_tree().create_timer(1.0).timeout
-		#patrol_direction = -1
-	#
-	## Flip sprite based on movement direction
-	#if patrol_direction > 0:
-		#animated_sprite.flip_h = false
-	#elif patrol_direction < 0:
-		#animated_sprite.flip_h = true
+func choose_random_direction():
+	# Pick a new random direction every 1–3 seconds
+	move_direction = randi_range(-1, 1)  
+	await get_tree().create_timer(randf_range(1.5, 3.0)).timeout
+	choose_random_direction()

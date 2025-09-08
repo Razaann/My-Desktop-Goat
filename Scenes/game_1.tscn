@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://chmmqmurv0hts"]
+
+[ext_resource type="PackedScene" uid="uid://c4w3kwwijjhwi" path="res://Scenes/goat.tscn" id="1_o8rjv"]
+[ext_resource type="Script" uid="uid://2u2hmcgui0jn" path="res://Codes/game_1.gd" id="1_oux1a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ifk3"]
+size = Vector2(1080, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o8rjv"]
+size = Vector2(8, 64)
+
+[node name="Game1" type="Node2D"]
+script = ExtResource("1_oux1a")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(540, 68)
+shape = SubResource("RectangleShape2D_5ifk3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
+position = Vector2(4, 32)
+shape = SubResource("RectangleShape2D_o8rjv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Wall"]
+position = Vector2(1076, 32)
+shape = SubResource("RectangleShape2D_o8rjv")
+
+[node name="Goat" parent="." instance=ExtResource("1_o8rjv")]
+position = Vector2(32, 45)
+scale = Vector2(2, 2)

@@ -7,6 +7,12 @@ extends Node2D
 func _ready():
 	# Set background to be transparent
 	get_tree().get_root().set_transparent_background(true)
+	get_window().mouse_passthrough = true
+	
+	# Passthrough polygon (from goat)
+	var goat = $Goat
+	var poly2d: Polygon2D = goat.get_node("Polygon2D")
+	get_window().mouse_passthrough_polygon = poly2d.polygon
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
