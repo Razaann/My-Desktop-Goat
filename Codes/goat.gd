@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 func _play_random_animation() -> void:
 	# Pick random animation
-	current_anim = ["idle", "idle", "walk", "walk", "crouch", "hurt"].pick_random()
+	current_anim = ["idle", "idle", "idle", "idle", "walk", "walk", "walk", "hurt", "crouch"].pick_random()
 	sprite.play(current_anim)
 	
 	# Assign random direction if walk/crouch
