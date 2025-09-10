@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c4w3kwwijjhwi"]
+[gd_scene load_steps=27 format=3 uid="uid://c4w3kwwijjhwi"]
 
 [ext_resource type="Script" uid="uid://bx3g6awh2m2vy" path="res://Codes/goat.gd" id="1_ickow"]
 [ext_resource type="Shader" uid="uid://cvpuoog4r4tuh" path="res://Scenes/goat_color.gdshader" id="3_icpbp"]
@@ -37,13 +37,21 @@ region = Rect2(96, 120, 24, 24)
 atlas = ExtResource("3_umr8r")
 region = Rect2(120, 120, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5f133"]
-atlas = ExtResource("3_umr8r")
-region = Rect2(0, 48, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_rtwph"]
 atlas = ExtResource("3_umr8r")
 region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umr8r"]
+atlas = ExtResource("3_umr8r")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f133"]
+atlas = ExtResource("3_umr8r")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnm6s"]
+atlas = ExtResource("3_umr8r")
+region = Rect2(96, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pxrjg"]
 atlas = ExtResource("3_umr8r")
@@ -112,14 +120,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rtwph")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umr8r")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5f133")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rtwph")
+"texture": SubResource("AtlasTexture_xnm6s")
 }],
 "loop": true,
 "name": &"hurt",
-"speed": 3.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -171,7 +185,7 @@ shape = ExtResource("3_jsmmk")
 [node name="GoatSprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_33es1")
 sprite_frames = SubResource("SpriteFrames_33es1")
-animation = &"walk"
+animation = &"hurt"
 autoplay = "idle"
-frame = 5
-frame_progress = 0.705038
+frame = 1
+frame_progress = 0.175743
