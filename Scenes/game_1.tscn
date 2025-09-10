@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://chmmqmurv0hts"]
+[gd_scene load_steps=5 format=3 uid="uid://chmmqmurv0hts"]
 
 [ext_resource type="PackedScene" uid="uid://c4w3kwwijjhwi" path="res://Scenes/goat.tscn" id="1_o8rjv"]
 [ext_resource type="Script" uid="uid://2u2hmcgui0jn" path="res://Codes/game_1.gd" id="1_oux1a"]
-[ext_resource type="Texture2D" uid="uid://igep1s4rq46f" path="res://icon.svg" id="2_syfnt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ifk3"]
 size = Vector2(1080, 8)
@@ -12,12 +11,6 @@ size = Vector2(8, 64)
 
 [node name="Game1" type="Node2D"]
 script = ExtResource("1_oux1a")
-
-[node name="Icon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(540, 64)
-scale = Vector2(8.4375, 1)
-texture = ExtResource("2_syfnt")
 
 [node name="Wall" type="StaticBody2D" parent="."]
 

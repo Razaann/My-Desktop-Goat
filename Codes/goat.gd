@@ -3,9 +3,30 @@ extends CharacterBody2D
 const SPEED = 75.0
 
 var move_direction: int = 0 # -1 = left, 0 = idle, 1 = right
+@onready var sprite = $GoatSprite
 
 func _ready():
 	randomize()
+	
+	var mat: ShaderMaterial = sprite.material as ShaderMaterial
+	if mat == null:
+		push_error("GoatSprite needs a ShaderMaterial assigned to its Material property")
+		return
+	
+	# Example: pick a random hue for fur, and make shadow a darker version
+	var fur = Color.from_hsv(randf(), 0.4 + randf() * 0.6, 0.9)
+	var shadow = fur.darkened(0.35)
+	
+	mat.set_shader_parameter("new_fur_color", fur)
+	mat.set_shader_parameter("new_shadow_color", shadow)
+	
+	# tweak tolerance if your sprite has anti-aliased edges (0.02..0.12)
+	mat.set_shader_parameter("tolerance", 0.06)
+	
+	#var mat: ShaderMaterial = sprite.material
+	#mat.set_shader_parameter("tint_color", random_color())
+	
+	
 	choose_random_direction()
 
 func _physics_process(delta):
@@ -43,3 +64,7 @@ func choose_random_direction():
 	move_direction = randi_range(-1, 1)  
 	await get_tree().create_timer(randf_range(1.5, 3.0)).timeout
 	choose_random_direction()
+
+#func random_color() -> Color:
+	## Pick random RGB with full brightness
+	#return Color.from_hsv(randf(), 0.8, 1.0) # (hue, saturation, value)
