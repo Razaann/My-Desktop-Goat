@@ -116,7 +116,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"crouch",
-"speed": 8.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -185,7 +185,8 @@ shape = ExtResource("3_jsmmk")
 [node name="GoatSprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_33es1")
 sprite_frames = SubResource("SpriteFrames_33es1")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "idle"
-frame = 1
-frame_progress = 0.175743
+frame_progress = 0.041211
+
+[node name="Camera2D" type="Camera2D" parent="."]

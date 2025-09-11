@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED := 75.0
+const SPEED := 50.0
 
 @onready var sprite: AnimatedSprite2D = $GoatSprite
 
